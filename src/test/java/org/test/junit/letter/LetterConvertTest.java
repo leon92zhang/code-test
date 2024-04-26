@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.test.letter.ILetterConvertor;
+import org.test.letter.UnsupportedInputException;
 import org.test.letter.impl.RemoveConsecutiveCharacters;
 import org.test.letter.impl.ReplaceConsecutiveCharacters;
 
@@ -35,10 +36,10 @@ public class LetterConvertTest {
         for (int charNumber = 65; charNumber <= 90; charNumber++) {
             Assert.assertEquals("", removeConsecutiveCharacters.convert(new String(new char[]{(char) charNumber, (char) charNumber, (char) charNumber})));
         }
-        Assert.assertThrows(IllegalArgumentException.class, () -> {
+        Assert.assertThrows(UnsupportedInputException.class, () -> {
             removeConsecutiveCharacters.convert("1");
         });
-        Assert.assertThrows(IllegalArgumentException.class, () -> {
+        Assert.assertThrows(UnsupportedInputException.class, () -> {
             removeConsecutiveCharacters.convert("%");
         });
 
@@ -61,10 +62,10 @@ public class LetterConvertTest {
         for (int charNumber = 65; charNumber <= 90; charNumber++) {
             Assert.assertEquals(new String(new char[]{(char) (charNumber - 1)}), replaceConsecutiveCharacters.convert(new String(new char[]{(char) charNumber, (char) charNumber, (char) charNumber}))); // new String(new char[]{'\u0000', '\u0000', '\u0000'})
         }
-        Assert.assertThrows(IllegalArgumentException.class, () -> {
+        Assert.assertThrows(UnsupportedInputException.class, () -> {
             replaceConsecutiveCharacters.convert("1");
         });
-        Assert.assertThrows(IllegalArgumentException.class, () -> {
+        Assert.assertThrows(UnsupportedInputException.class, () -> {
             replaceConsecutiveCharacters.convert("%");
         });
         Assert.assertNull(replaceConsecutiveCharacters.convert(null));

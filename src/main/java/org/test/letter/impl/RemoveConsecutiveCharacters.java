@@ -1,6 +1,7 @@
 package org.test.letter.impl;
 
 import org.test.letter.ILetterConvertor;
+import org.test.letter.UnsupportedInputException;
 
 public class RemoveConsecutiveCharacters implements ILetterConvertor {
 
@@ -20,7 +21,7 @@ public class RemoveConsecutiveCharacters implements ILetterConvertor {
                     return false;
                 });
         if (!match) {
-            throw new IllegalArgumentException("The input string can only contain lowercase and uppercase letters.");
+            throw new UnsupportedInputException("The input string can only contain lowercase and uppercase letters.");
         }
         StringBuilder builder = new StringBuilder(input);
         boolean found = true;
